@@ -10,6 +10,11 @@ import { FormBuilder } from '@angular/forms';
 export class CartComponent implements OnInit {
   items;
   checkoutForm;
+  itemPurchased;
+  Name;
+  Address;
+  ShowOrderProcess;
+  ShowForm;
   constructor(
     private cartService: CartService,
     private formBuilder: FormBuilder,
@@ -22,14 +27,18 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.items = this.cartService.getItems();
+    this.ShowOrderProcess = false;
+    this.ShowForm = this.items.length > 0;
   }
 
   onSubmit(customerData) {
     // Process checkout data here
     this.items = this.cartService.clearCart();
     this.checkoutForm.reset();
-
-    console.warn('Your order has been submitted', customerData);
+    this.itemPurchased = 'Your order has been submitted';
+    this.Name = customerData.name;
+    this.Address = customerData.address;
+    this.ShowOrderProcess = true;
   }
 
 }

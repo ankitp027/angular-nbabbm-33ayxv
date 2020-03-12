@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
+
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
@@ -12,7 +13,7 @@ export class TopBarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.items = this.cartService.getItems();
+    this.items = this.cartService.itemCount();
   }
 
 }
